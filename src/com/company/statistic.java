@@ -27,7 +27,10 @@ public class statistic {
         )
         {
             String s = bufferedReader.lines().collect(Collectors.joining(" "));
-            String[] strBuf = s.split("[,.!?\\s]+");
+            String[] strBuf = s.split("[:;()'\",.!?\\s]+");
+            for(int i = 0; i < strBuf.length; ++i) {
+                strBuf[i] = strBuf[i].toLowerCase();
+            }
             Map<String, Integer> map = new HashMap<>();
             for(int i = 0; i < strBuf.length; ++i)
             {
