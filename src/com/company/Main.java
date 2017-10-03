@@ -9,30 +9,14 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) {
-        try (
-            FileReader fileReader = new FileReader("in.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader)
-        )
-        {
-
-            String s = bufferedReader.readLine();
-            String[] strBuf = s.split(" ");
-            Map<String, Integer> map = new HashMap<>();
-            for(int i = 0; i < strBuf.length; ++i)
-            {
-                if(map.containsKey(strBuf[i]))
-                {
-                    map.put(strBuf[i], map.get(strBuf[i]) + 1);
-                }
-                else
-                {
-                    map.put(strBuf[i], 1);
-                }
+        try {
+            String files[] = statistic.getFileList("txt");
+            for (String file: files) {
+                Map<String, Integer> map = statistic.countWords(file);
+                System.out.println(map);
             }
-            System.out.print(map);
         }
-        catch (IOException e)
-        {
+        catch (Exception e) {
             System.out.println(e);
         }
     }
